@@ -1,0 +1,8 @@
+{
+  "name": "leadreel",
+  "functions": {
+    "api/join.js": {
+      "maxDuration": 10
+    }
+  }
+}

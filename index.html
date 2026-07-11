@@ -424,11 +424,12 @@
   <div class="container">
     <h2>Get early access</h2>
     <p class="section-sub">Be one of the first 50 agents to try LeadReel. Early adopters get locked-in at $19/mo for life.</p>
-    <form action="https://formspree.io/f/your-form-id" method="POST" class="form-row">
-      <input type="email" name="email" placeholder="Your email address" required>
-      <input type="text" name="name" placeholder="First name" style="min-width:140px; flex:0.5;">
-      <button type="submit" class="btn btn-primary">Join waitlist</button>
+    <form id="join-form" class="form-row" onsubmit="return submitForm(event)">
+      <input type="email" id="email-input" placeholder="Your email address" required>
+      <input type="text" id="name-input" placeholder="First name" style="min-width:140px; flex:0.5;">
+      <button type="submit" class="btn btn-primary" id="submit-btn">Join waitlist</button>
     </form>
+    <p id="form-message" class="form-note" style="display:none;">Thanks! You're on the list. We'll reach out when LeadReel launches.</p>
     <p class="form-note">No spam. I'll email you when LeadReel is ready to launch.</p>
   </div>
 </section>
@@ -471,5 +472,30 @@
   </div>
 </footer>
 
+<script>
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('form-message');
+  const email = document.getElementById('email-input').value;
+  const name = document.getElementById('name-input').value;
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  try {
+    const res = await fetch('/api/join', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email, name})
+    });
+    if (!res.ok) throw new Error('Server error');
+    document.getElementById('join-form').style.display = 'none';
+    msg.style.display = 'block';
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Join waitlist';
+    alert('Something went wrong. Please try again or email us directly.');
+  }
+}
+</script>
 </body>
 </html>
