@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeadReel — Auto-respond to Zillow leads in 60 seconds</title>
+  <meta name="description" content="Never lose a Zillow lead again. LeadReel auto-responds to your inbound leads within 60 seconds with personalized messages and scheduling. $29/mo. No setup fees.">
+  <style>
+    :root {
+      --green: #0a7e3d;
+      --green-light: #e8f5ee;
+      --green-dark: #065a2a;
+      --gray-50: #f8fafb;
+      --gray-100: #f1f3f5;
+      --gray-200: #e2e5e8;
+      --gray-600: #6b7280;
+      --gray-800: #1a1d21;
+      --gray-900: #0d0e10;
+      --max-w: 720px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--gray-800);
+      background: white;
+      line-height: 1.6;
+    }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--gray-900) 0%, #1a3a2a 100%);
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero .sub {
+      font-size: 1.15rem;
+      color: #b0c4b8;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .hero .guarantee {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      border-radius: 32px;
+      padding: 8px 20px;
+      font-size: 0.9rem;
+      color: #8fc9a5;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero .cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.05); }
+
+    /* Sections */
+    section { padding: 60px 0; }
+    section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--gray-900);
+    }
+    section .section-sub {
+      color: var(--gray-600);
+      margin-bottom: 36px;
+      font-size: 1.05rem;
+    }
+
+    /* Problem */
+    .problem {
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .problem-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--gray-200);
+    }
+    .problem-card .stat {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #dc2626;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .problem-card p {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .step {
+      text-align: center;
+      padding: 24px 16px;
+    }
+    .step .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: var(--green-light);
+      color: var(--green);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+    .step h3 { font-size: 1rem; margin-bottom: 6px; }
+    .step p { color: var(--gray-600); font-size: 0.9rem; }
+
+    /* Features */
+    .features {
+      background: var(--gray-50);
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .feature-item {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid var(--gray-200);
+    }
+    .feature-item h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .feature-item p {
+      color: var(--gray-600);
+      font-size: 0.9rem;
+    }
+
+    /* Pricing */
+    .pricing-card {
+      max-width: 400px;
+      margin: 0 auto;
+      border: 2px solid var(--green);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      background: white;
+    }
+    .pricing-card .price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      line-height: 1;
+    }
+    .pricing-card .price span {
+      font-size: 1rem;
+      color: var(--gray-600);
+      font-weight: 400;
+    }
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin: 24px 0;
+    }
+    .pricing-card ul li {
+      padding: 6px 0;
+      color: var(--gray-600);
+      font-size: 0.95rem;
+    }
+    .pricing-card ul li::before {
+      content: '\2713';
+      color: var(--green);
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    .pricing-card .btn {
+      width: 100%;
+      margin-top: 8px;
+    }
+    .pricing-note {
+      text-align: center;
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      margin-top: 12px;
+    }
+
+    /* Waitlist form */
+    .waitlist {
+      background: var(--gray-900);
+      color: white;
+      text-align: center;
+    }
+    .waitlist h2 { color: white; }
+    .waitlist .section-sub { color: #b0c4b8; }
+    .form-row {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .form-row input {
+      flex: 1;
+      min-width: 200px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+    .form-row input::placeholder { color: #8a9b8f; }
+    .form-row input:focus { border-color: var(--green); }
+    .form-row .btn { flex-shrink: 0; }
+    .form-note {
+      font-size: 0.8rem;
+      color: #8a9b8f;
+      margin-top: 12px;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--gray-200);
+      padding: 20px 0;
+    }
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .faq-item p {
+      color: var(--gray-600);
+      font-size: 0.92rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.8rem; }
+      .problem-grid, .feature-list { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 16px; }
+      .hero { padding: 60px 0 40px; }
+      section { padding: 40px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="guarantee">&#9888; 60-second response or you don't pay</div>
+    <h1>Never lose a Zillow lead again.</h1>
+    <p class="sub">LeadReel auto-responds to every inbound lead within 60 seconds with a personalized SMS and email. Warm leads book directly into your calendar. No software to learn. Set up in 5 minutes.</p>
+    <div class="cta-group">
+      <a href="#pricing" class="btn btn-primary">See pricing &mdash; $29/mo</a>
+      <a href="#waitlist" class="btn btn-outline">Get early access</a>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="problem" id="problem">
+  <div class="container">
+    <h2>Speed is everything in real estate</div>
+    <p class="section-sub">The first agent to respond wins the deal. Here's what's at stake when you're slow.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="stat">78%</div>
+        <p>of buyers choose the first agent who responds to their inquiry. A 5-minute delay drops your chance of contact by 10x.</p>
+      </div>
+      <div class="problem-card">
+        <div class="stat">$8,400</div>
+        <p>in average commission lost per cold lead that went to a faster agent. Individual agents lose 3-5 deals per year this way.</p>
+      </div>
+      <div class="problem-card">
+        <div class="stat">42%</div>
+        <p>of Zillow leads never get a response at all. Most agents are too busy showing homes to answer a lead form in real time.</p>
+      </div>
+      <div class="problem-card">
+        <div class="stat">60s</div>
+        <p>is the window where response rate is &gt;90%. After 5 minutes it drops to 40%. After 30 minutes you might as well not bother.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section>
+  <div class="container">
+    <h2>How it works</h2>
+    <p class="section-sub">Three minutes to set up. Runs on autopilot forever.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Connect your lead sources</h3>
+        <p>Link Zillow, Realtor.com, or any lead form. LeadReel monitors for new submissions instantly.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Set your response template</h3>
+        <p>Write a personal intro, attach your calendar link, and set follow-up cadence. We handle the rest.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>They reply. You close.</h3>
+        <p>Leads get an SMS + email within 60 seconds. Hot leads book directly into your calendar. Cold leads get drip follow-ups.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <h2>Everything you need to never miss a lead</h2>
+    <p class="section-sub">Built for individual agents who don't have a full CRM team.</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <h3>Instant SMS + email response</h3>
+        <p>Dual-channel response within 60 seconds. Text gets opened. Email builds trust. Both hit before the lead moves on.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Smart calendar scheduling</h3>
+        <p>Auto-send your Calendly or Calendso link. Leads see your availability without back-and-forth.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Drip follow-up sequences</h3>
+        <p>3-message drip over 7 days for leads who don't respond. Most deals close after follow-up 3.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Personalized, not robotic</h3>
+        <p>Each response includes the lead's name, property of interest, and your real phone number. Reads like you, not a bot.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Mobile dashboard</h3>
+        <p>See every lead and response from your phone. Know what's happening even when you're showing a property.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Performance analytics</h3>
+        <p>Response time, booking rate, conversion by source. Know which lead sources actually pay off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+  <div class="container">
+    <h2>Simple pricing. No surprises.</h2>
+    <p class="section-sub">One plan. All features. Pay month-to-month.</p>
+    <div class="pricing-card">
+      <div class="price">$29 <span>/ month</span></div>
+      <ul>
+        <li>Unlimited leads</li>
+        <li>Instant SMS + email response</li>
+        <li>Calendar scheduling integration</li>
+        <li>Drip follow-up sequences</li>
+        <li>Mobile dashboard</li>
+        <li>Performance analytics</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a href="#" class="btn btn-primary" onclick="alert('Stripe payment link to be added once product launches. Join the waitlist to get early access and founder pricing.')">Subscribe &mdash; $29/mo</a>
+      <p style="font-size:0.8rem; color:#6b7280; margin-top:8px;">60-second response guarantee. If we miss it, that month is free.</p>
+    </div>
+    <p class="pricing-note">No setup fees. No contract. Cancel with one click.</p>
+  </div>
+</section>
+
+<!-- Waitlist -->
+<section class="waitlist" id="waitlist">
+  <div class="container">
+    <h2>Get early access</h2>
+    <p class="section-sub">Be one of the first 50 agents to try LeadReel. Early adopters get locked-in at $19/mo for life.</p>
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="form-row">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <input type="text" name="name" placeholder="First name" style="min-width:140px; flex:0.5;">
+      <button type="submit" class="btn btn-primary">Join waitlist</button>
+    </form>
+    <p class="form-note">No spam. I'll email you when LeadReel is ready to launch.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>Which lead sources do you support?</h3>
+      <p>Zillow, Realtor.com, Redfin, Homes.com, and any lead form that sends an email notification. If it hits your inbox, LeadReel can respond to it.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this TCPA compliant?</h3>
+      <p>Yes. LeadReel only sends SMS to leads who have explicitly submitted their phone number through a real estate lead form. This is considered an inbound inquiry response, not cold messaging.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if I want to customise the response?</h3>
+      <p>You write the template. Every response uses your voice, your name, your phone number. You can write different templates for different lead sources.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I try it before paying?</h3>
+      <p>Yes. We offer a 14-day free trial. No credit card required. If we fail to respond within 60 seconds during your trial, the entire trial month is free.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is this different from Follow Up Boss or BoomTown?</h3>
+      <p>Those are enterprise CRMs for teams. They cost $200-300+/mo and take weeks to set up. LeadReel is a single-purpose tool for individual agents: connect, write your template, and you're done in 5 minutes. No training required.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What happens if I cancel?</h3>
+      <p>You keep access until the end of your billing period. No data is held hostage. Cancel with one click from the dashboard.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>LeadReel &mdash; Built for individual real estate agents who don't have a CRM team.</p>
+    <p style="margin-top:4px;">&copy; 2026 LeadReel. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
